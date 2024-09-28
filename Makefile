@@ -18,7 +18,7 @@ env:
 	echo ".env file created successfully."
 
 init:
-	@mkdir -p cmd/bot/ internal/ config/ pkg/cache pkg/helpers pkg/utils
+	@mkdir -p cmd/bot/ internal/configs config/ pkg/cache pkg/helpers pkg/utils
 	@mkdir -p pkg/bot/fsm pkg/bot/handlers/admin pkg/bot/handlers/public pkg/bot/middlewares
 	@mkdir -p pkg/database/models pkg/database/dbservice
 
