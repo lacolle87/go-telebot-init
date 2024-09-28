@@ -77,4 +77,5 @@ func Start() error {
 
 	slog.Info("Starting bot", "Bot", tb.Bot.Me.Username)
 	tb.Bot.Start()
-	return n
+	return nil
+}
