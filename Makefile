@@ -10,7 +10,7 @@ env:
 	read -p "Enter your SuperUser Chat ID: " chat_id; \
 	read -p "Enter SuperUser First Name: " first_name; \
 	read -p "Enter SuperUser Last Name: " last_name; \
-	echo "BOT_TOKEN=$$token" > .env; \
+	echo "TELEGRAM_TOKEN=$$token" > .env; \
 	echo "SU_CHAT_ID=$$chat_id" >> .env; \
 	echo "SUPERUSER_NAME=SU" >> .env; \
 	echo "SUPERUSER_FIRSTNAME=$$first_name" >> .env; \
