@@ -18,17 +18,27 @@ env:
 	echo ".env file created successfully."
 
 init:
-	@mkdir -p config/ cmd/internal pkg/bot/router pkg/bot/middlewares  pkg/utils
+	@mkdir -p cmd/bot/ internal/ configs/ pkg/cache pkg/helpers pkg/utils
+	@mkdir -p pkg/bot/fsm pkg/bot/handlers/admin pkg/bot/handlers/public pkg/bot/middlewares
 	@mkdir -p pkg/database/models pkg/database/dbservice
-	@cp templates/configs/config_template.yaml config/config.yaml
-	@cp templates/main_template.go cmd/bot/main.go
-	@cp templates/config_template.go internal/config.go
-	@cp templates/bot_template.go pkg/bot/bot.go
-	@cp templates/router_template.go pkg/bot/router/router.go
-	@cp templates/middlewares_template.go pkg/bot/middlewares/middlewares.go
+
+	@cp templates/cmd/bot/main_template.go cmd/bot/main.go
+	@cp templates/configs/config_template.yaml configs/config.yaml
+	@cp templates/internal/config_template.go internal/config.go
+
+	@cp templates/pkg/bot//bot_template.go pkg/bot/bot.go
+	@cp templates/pkg/bot/fsm/fsm_template.go pkg/bot/fsm/fsm.go
+	@cp templates/pkg/bot/handlers/admin/admin_template.go pkg/bot/handlers/admin/admin.go
+	@cp templates/pkg/bot/handlers/public/public_template.go pkg/bot/handlers/public/public.go
+	@cp templates/pkg/bot/middlewares_template.go pkg/bot/middlewares/middlewares.go
+
 	@cp templates/database_template.go pkg/database/database.go
 	@cp templates/models_template.go pkg/database/models/models.go
 	@cp templates/dbservice_template.go pkg/database/dbservice/dbservice.go
+
+	@cp templates/pkg/cache/cache_template.go pkg/cache/cache.go
+
+	@cp templates/helpers_template.go pkg/helpers/helpers.go
 	@cp templates/utils_template.go pkg/utils/utils.go
 	@find . -type f -name '*.go' -exec sed -i '' "s|go-telebot-init|$(MODULE)|g" {} +
 	@echo "Initialization complete."
