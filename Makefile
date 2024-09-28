@@ -11,7 +11,7 @@ env:
 	read -p "Enter SuperUser First Name: " first_name; \
 	read -p "Enter SuperUser Last Name: " last_name; \
 	echo "TELEGRAM_TOKEN=$$token" > .env; \
-	echo "SU_CHAT_ID=$$chat_id" >> .env; \
+	echo "SUPERUSER_ID=$$chat_id" >> .env; \
 	echo "SUPERUSER_NAME=SU" >> .env; \
 	echo "SUPERUSER_FIRSTNAME=$$first_name" >> .env; \
 	echo "SUPERUSER_LASTNAME=$$last_name" >> .env; \
