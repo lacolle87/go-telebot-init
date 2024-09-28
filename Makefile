@@ -32,14 +32,14 @@ init:
 	@cp templates/pkg/bot/handlers/public/public_template.go pkg/bot/handlers/public/public.go
 	@cp templates/pkg/bot/middlewares/middlewares_template.go pkg/bot/middlewares/middlewares.go
 
-	@cp templates/database_template.go pkg/database/database.go
-	@cp templates/models_template.go pkg/database/models/models.go
-	@cp templates/dbservice_template.go pkg/database/dbservice/dbservice.go
+	@cp templates/pkg/database/database_template.go pkg/database/database.go
+	@cp templates/pkg/database/models/models_template.go pkg/database/models/models.go
+	@cp templates/pkg/database/dbservice/dbservice_template.go pkg/database/dbservice/dbservice.go
 
 	@cp templates/pkg/cache/cache_template.go pkg/cache/cache.go
 
-	@cp templates/helpers_template.go pkg/helpers/helpers.go
-	@cp templates/utils_template.go pkg/utils/utils.go
+	@cp templates/pkg/helpers/helpers_template.go pkg/helpers/helpers.go
+	@cp templates/pkg/utils/utils_template.go pkg/utils/utils.go
 	@find . -type f -name '*.go' -exec sed -i '' "s|go-telebot-init|$(MODULE)|g" {} +
 	@echo "Initialization complete."
 
