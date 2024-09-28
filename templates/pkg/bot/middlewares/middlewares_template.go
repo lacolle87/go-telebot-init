@@ -20,3 +20,5 @@ func IsAdmin(db *database.DBImpl) tele.MiddlewareFunc {
 			}
 			return next(c)
 		}
+	}
+}
