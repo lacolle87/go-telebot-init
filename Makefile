@@ -30,7 +30,7 @@ init:
 	@cp templates/pkg/bot/fsm/fsm_template.go pkg/bot/fsm/fsm.go
 	@cp templates/pkg/bot/handlers/admin/admin_template.go pkg/bot/handlers/admin/admin.go
 	@cp templates/pkg/bot/handlers/public/public_template.go pkg/bot/handlers/public/public.go
-	@cp templates/pkg/bot/middlewares_template.go pkg/bot/middlewares/middlewares.go
+	@cp templates/pkg/bot/middlewares/middlewares_template.go pkg/bot/middlewares/middlewares.go
 
 	@cp templates/database_template.go pkg/database/database.go
 	@cp templates/models_template.go pkg/database/models/models.go
