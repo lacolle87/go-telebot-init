@@ -8,12 +8,13 @@ import (
 	ph "go-telebot-init/pkg/bot/handlers/public"
 	"go-telebot-init/pkg/bot/middlewares"
 	"go-telebot-init/pkg/database"
+	tele "gopkg.in/telebot.v3"
 	"log/slog"
 	"time"
 )
 
 type TelegramBot struct {
-	Bot *telebot.Bot
+	Bot *tele.Bot
 	DB  *database.DBImpl
 	FSM *fsm.FSM
 }
@@ -37,14 +38,14 @@ func NewTelegramBot() (*TelegramBot, error) {
 	}, nil
 }
 
-func createBot() (*telebot.Bot, error) {
+func createBot() (*tele.Bot, error) {
 	retries := viper.GetInt("config.retries")
 	for i := 0; i < retries; i++ {
-		pref := telebot.Settings{
+		pref := tele.Settings{
 			Token:  viper.GetString("TELEGRAM_TOKEN"),
-			Poller: &telebot.LongPoller{Timeout: 10 * time.Second},
+			Poller: &tele.LongPoller{Timeout: 10 * time.Second},
 		}
-		bot, err := telebot.NewBot(pref)
+		bot, err := tele.NewBot(pref)
 		if err == nil {
 			return bot, nil
 		}
@@ -59,8 +60,8 @@ func (tb *TelegramBot) registerHandlers() {
 	admin := tb.Bot.Group()
 	admin.Use(middlewares.IsAdmin(tb.DB))
 	admin.Handle("/post", ah.HandlePost(tb.FSM))
-	admin.Handle(telebot.OnText, ah.HandleText(tb.DB, tb.FSM))
-	admin.Handle(telebot.OnPhoto, ah.HandlePhoto(tb.DB, tb.FSM))
+	admin.Handle(tele.OnText, ah.HandleText(tb.DB, tb.FSM))
+	admin.Handle(tele.OnPhoto, ah.HandlePhoto(tb.DB, tb.FSM))
 
 	public := tb.Bot.Group()
 	public.Handle("/start", ph.HandleStart(tb.DB))
@@ -76,5 +77,4 @@ func Start() error {
 
 	slog.Info("Starting bot", "Bot", tb.Bot.Me.Username)
 	tb.Bot.Start()
-	return nil
-}
+	return n

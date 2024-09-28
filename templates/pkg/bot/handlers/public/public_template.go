@@ -5,12 +5,13 @@ import (
 	"go-telebot-init/pkg/database"
 	"go-telebot-init/pkg/database/models"
 	"go-telebot-init/pkg/utils"
+	tele "gopkg.in/telebot.v3"
 	"gorm.io/gorm"
 	"log/slog"
 )
 
-func HandleStart(db *database.DBImpl) func(telebot.Context) error {
-	return func(c telebot.Context) error {
+func HandleStart(db *database.DBImpl) func(tele.Context) error {
+	return func(c tele.Context) error {
 		_, err := utils.GetUserByChatID(db, c.Sender().ID)
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			user := &models.User{
@@ -28,5 +29,3 @@ func HandleStart(db *database.DBImpl) func(telebot.Context) error {
 			return err
 		}
 		return c.Send("Hello, I'm a bot!")
-	}
-}

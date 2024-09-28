@@ -5,11 +5,12 @@ import (
 	"go-telebot-init/pkg/bot/fsm"
 	"go-telebot-init/pkg/database"
 	"go-telebot-init/pkg/database/models"
+	tele "gopkg.in/telebot.v3"
 	"log/slog"
 )
 
-func HandlePost(fsmBot *fsm.FSM) func(c telebot.Context) error {
-	return func(c telebot.Context) error {
+func HandlePost(fsmBot *fsm.FSM) func(c tele.Context) error {
+	return func(c tele.Context) error {
 		chatID := c.Chat().ID
 		currentState := fsmBot.GetState(chatID)
 		if currentState == fsm.Idle || currentState == "" {
@@ -20,7 +21,7 @@ func HandlePost(fsmBot *fsm.FSM) func(c telebot.Context) error {
 	}
 }
 
-func handleContent(db *database.DBImpl, fsmBot *fsm.FSM, c telebot.Context, content string, photo *telebot.Photo) error {
+func handleContent(db *database.DBImpl, fsmBot *fsm.FSM, c tele.Context, content string, photo *tele.Photo) error {
 	chatID := c.Chat().ID
 	if fsmBot.GetState(chatID) == fsm.WaitingForContent {
 		fsmBot.ClearState(chatID)
@@ -42,19 +43,19 @@ func handleContent(db *database.DBImpl, fsmBot *fsm.FSM, c telebot.Context, cont
 	return nil
 }
 
-func HandleText(db *database.DBImpl, fsmBot *fsm.FSM) func(c telebot.Context) error {
-	return func(c telebot.Context) error {
+func HandleText(db *database.DBImpl, fsmBot *fsm.FSM) func(c tele.Context) error {
+	return func(c tele.Context) error {
 		return handleContent(db, fsmBot, c, c.Message().Text, nil)
 	}
 }
 
-func HandlePhoto(db *database.DBImpl, fsmBot *fsm.FSM) func(c telebot.Context) error {
-	return func(c telebot.Context) error {
+func HandlePhoto(db *database.DBImpl, fsmBot *fsm.FSM) func(c tele.Context) error {
+	return func(c tele.Context) error {
 		return handleContent(db, fsmBot, c, c.Message().Caption, c.Message().Photo)
 	}
 }
 
-func broadcastPost(c telebot.Context, userChatIDs []int64, text string, photo *telebot.Photo) error {
+func broadcastPost(c tele.Context, userChatIDs []int64, text string, photo *tele.Photo) error {
 	if text == "" && photo == nil {
 		return fmt.Errorf("no text or photo provided")
 	}
@@ -64,7 +65,7 @@ func broadcastPost(c telebot.Context, userChatIDs []int64, text string, photo *t
 		if chatID == c.Sender().ID {
 			continue
 		}
-		user := &telebot.User{ID: chatID}
+		user := &tele.User{ID: chatID}
 
 		if text != "" {
 			if _, err := c.Bot().Send(user, text); err != nil {
