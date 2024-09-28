@@ -1,0 +1,9 @@
+logger:
+  filename: "logs/bot.log"   # The log file name
+  max_size: 1                # Maximum size of a log file in MB before rotation
+  max_backups: 5             # Number of backup log files to retain
+  max_age: 7                 # Maximum number of days to retain a log file
+  compress: true             # Compress rotated log files
+config:
+  retries: 5                 # Number of retries for the bot to connect
+  ttl: 1                     # TTL for cache in minutes
