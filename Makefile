@@ -40,7 +40,7 @@ init:
 
 	@cp templates/pkg/helpers/helpers_template.go pkg/helpers/helpers.go
 	@cp templates/pkg/utils/utils_template.go pkg/utils/utils.go
-	@find . -type f -name '*.go' -exec sed -i.bak "s|go-telebot-init|$(MODULE)|g" {} +
+	@find . -type f -name '*.go' -exec sed -i "s|go-telebot-init|$(MODULE)|g" {} +
 	@echo "Initialization complete."
 
 deps:
