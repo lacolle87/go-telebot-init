@@ -31,7 +31,7 @@ func loadEnv() error {
 }
 
 func loadConfig() error {
-	viper.SetConfigFile("configs/config.yaml")
+	viper.SetConfigFile("config/config.yaml")
 	viper.SetConfigType("yaml")
 
 	if err := viper.MergeInConfig(); err != nil {

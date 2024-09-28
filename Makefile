@@ -23,10 +23,10 @@ init:
 	@mkdir -p pkg/database/models pkg/database/dbservice
 
 	@cp templates/cmd/bot/main_template.go cmd/bot/main.go
-	@cp templates/configs/config_template.yaml configs/config.yaml
-	@cp templates/internal/config_template.go internal/config.go
+	@cp templates/config/config_template.yaml config/config.yaml
+	@cp templates/internal/configs/configs_template.go internal/configs/configs.go
 
-	@cp templates/pkg/bot//bot_template.go pkg/bot/bot.go
+	@cp templates/pkg/bot/bot_template.go pkg/bot/bot.go
 	@cp templates/pkg/bot/fsm/fsm_template.go pkg/bot/fsm/fsm.go
 	@cp templates/pkg/bot/handlers/admin/admin_template.go pkg/bot/handlers/admin/admin.go
 	@cp templates/pkg/bot/handlers/public/public_template.go pkg/bot/handlers/public/public.go
