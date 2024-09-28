@@ -2,15 +2,9 @@ package public
 
 import (
 	"errors"
-	"go-telebot-init
-		}
-}/pkg/database"
-	"go-telebot-init
-		}
-}/pkg/database/models"
-	"go-telebot-init
-		}
-}/pkg/utils"
+	"go-telebot-init/pkg/database"
+	"go-telebot-init/pkg/database/models"
+	"go-telebot-init/pkg/utils"
 	tele "gopkg.in/telebot.v3"
 	"gorm.io/gorm"
 	"log/slog"
