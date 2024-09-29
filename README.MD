@@ -1,4 +1,4 @@
-# Bot Project Setup
+# Go Telebot Template
 
 This project provides a template for initializing a Go bot using [telebot](https://github.com/tucnak/telebot), along with a structured directory for FSM, handlers, cache, middlewares, and database connections.
 
