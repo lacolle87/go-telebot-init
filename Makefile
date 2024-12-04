@@ -56,4 +56,7 @@ clean:
 	@rm -rf templates/
 	@echo "Template files cleaned."
 
+	@rm -rf .git
+	@echo "Git repository removed."
+
 
