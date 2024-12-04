@@ -36,6 +36,7 @@ Executes all the necessary steps:
 - Initialize the project structure with templates.
 - Install dependencies.
 - Clean up template files.
+- Initializes a new Git repository for the project.
 
 ### `make env`
 
@@ -65,6 +66,7 @@ Once you run the `make all` command, the project will be fully initialized and r
 2. **Initializes Project Structure**: Generates the necessary directories and files for the bot's operation, FSM, handlers, middlewares, and database.
 3. **Installs Dependencies**: Automatically installs required Go modules, ensuring your project has all dependencies.
 4. **Cleans Up**: Removes template files after copying them into the appropriate directories.
+5. **Git Repository Initialization**: Removes any existing Git repository (if present) and initializes a new Git repository, with an initial commit.
 
 ### Running the Bot
 
