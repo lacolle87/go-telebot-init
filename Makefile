@@ -1,9 +1,9 @@
 SHELL := /bin/bash
-.PHONY: env init clean deps all
+.PHONY: env init clean deps git-repo all
 
 MODULE=$(shell basename $(shell pwd))
 
-all: env init deps clean
+all: env init deps clean git-repo
 
 env:
 	@read -p "Enter your bot token: " token; \
@@ -56,7 +56,11 @@ clean:
 	@rm -rf templates/
 	@echo "Template files cleaned."
 
+git-repo:
 	@rm -rf .git
-	@echo "Git repository removed."
+	@echo "Old Git repository removed."
 
-
+	@git init
+	@git add .
+	@git commit -m "Initial commit"
+	@echo "New Git repository initialized."
