@@ -3,16 +3,26 @@ package database
 import (
 	"errors"
 	"github.com/spf13/viper"
-	"go-telebot-init/pkg/database/dbservice"
-	"go-telebot-init/pkg/database/models"
-	"go-telebot-init/pkg/helpers"
+	"go-telebot-init-test/pkg/database/dbservice"
+	"go-telebot-init-test/pkg/database/models"
+	"go-telebot-init-test/pkg/helpers"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"log/slog"
 )
 
 type DBImpl struct {
-	DBS dbservice.DBService
+	DBS DBService
+}
+
+type DBService interface {
+	Create(model interface{}) error
+	Update(model interface{}) error
+	GetByID(id uint, model interface{}) error
+	GetAll(models interface{}) error
+	GetUserByChatID(chatID int64) (*models.User, error)
+	Delete(id uint, model interface{}) error
+	CloseConnection() error
 }
 
 func NewDB(db *gorm.DB) *DBImpl {
@@ -98,7 +108,7 @@ func createAdminIfNotExists(db *gorm.DB) error {
 	err := db.Where("chat_id = ?", suChatID).First(&user).Error
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		user = models.User{
-			ChatId:    suChatID,
+			ChatID:    suChatID,
 			Username:  viper.GetString("SUPERUSER_NAME"),
 			FirstName: viper.GetString("SUPERUSER_FIRSTNAME"),
 			LastName:  viper.GetString("SUPERUSER_LASTNAME"),

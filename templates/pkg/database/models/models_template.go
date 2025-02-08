@@ -3,11 +3,12 @@ package models
 import "time"
 
 type User struct {
-	ID        uint  `gorm:"primaryKey"`
-	ChatId    int64 `gorm:"unique;not null"`
+	ID        uint      `gorm:"primary_key"`
+	CreatedAt time.Time `gorm:"autoCreateTime"`
+	UpdatedAt time.Time `gorm:"autoUpdateTime"`
 	Username  string
 	FirstName string
 	LastName  string
-	IsAdmin   *bool     `gorm:"default:false"`
-	Date      time.Time `gorm:"type:timestamp;default:CURRENT_TIMESTAMP"`
+	ChatID    int64 `gorm:"unique;not null"`
+	IsAdmin   *bool `gorm:"default:false"`
 }

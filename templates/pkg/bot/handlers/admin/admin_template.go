@@ -2,9 +2,9 @@ package admin
 
 import (
 	"fmt"
-	"go-telebot-init/pkg/bot/fsm"
-	"go-telebot-init/pkg/database"
-	"go-telebot-init/pkg/database/models"
+	"go-telebot-init-test/pkg/bot/fsm"
+	"go-telebot-init-test/pkg/database"
+	"go-telebot-init-test/pkg/database/models"
 	tele "gopkg.in/telebot.v3"
 	"log/slog"
 )
@@ -35,7 +35,7 @@ func handleContent(db *database.DBImpl, fsmBot *fsm.FSM, c tele.Context, content
 
 		var userChatIDs []int64
 		for _, user := range *users {
-			userChatIDs = append(userChatIDs, user.ChatId)
+			userChatIDs = append(userChatIDs, user.ChatID)
 		}
 
 		return broadcastPost(c, userChatIDs, content, photo)

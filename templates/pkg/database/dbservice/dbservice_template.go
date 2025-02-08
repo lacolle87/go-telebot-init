@@ -1,7 +1,7 @@
 package dbservice
 
 import (
-	"go-telebot-init/pkg/database/models"
+	"go-telebot-init-test/pkg/database/models"
 	"gorm.io/gorm"
 )
 
@@ -9,18 +9,8 @@ type DBSImpl struct {
 	DBS *gorm.DB
 }
 
-func NewDBService(db *gorm.DB) DBService {
+func NewDBService(db *gorm.DB) *DBSImpl {
 	return &DBSImpl{DBS: db}
-}
-
-type DBService interface {
-	Create(model interface{}) error
-	Update(model interface{}) error
-	GetByID(id uint, model interface{}) error
-	GetAll(models interface{}) error
-	GetUserByChatID(chatID int64) (*models.User, error)
-	Delete(id uint, model interface{}) error
-	CloseConnection() error
 }
 
 func (d *DBSImpl) Create(model interface{}) error {
