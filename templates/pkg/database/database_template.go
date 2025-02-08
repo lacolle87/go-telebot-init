@@ -3,9 +3,9 @@ package database
 import (
 	"errors"
 	"github.com/spf13/viper"
-	"go-telebot-init-test/pkg/database/dbservice"
-	"go-telebot-init-test/pkg/database/models"
-	"go-telebot-init-test/pkg/helpers"
+	"go-telebot-init/pkg/database/dbservice"
+	"go-telebot-init/pkg/database/models"
+	"go-telebot-init/pkg/helpers"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"log/slog"

@@ -1,7 +1,7 @@
 package dbservice
 
 import (
-	"go-telebot-init-test/pkg/database/models"
+	"go-telebot-init/pkg/database/models"
 	"gorm.io/gorm"
 )
 
